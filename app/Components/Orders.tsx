@@ -1,7 +1,7 @@
 'use client'
 import React from "react";
 import {Button, Drawer, IconButton, Typography,} from "@material-tailwind/react";
-import useOrdersStore from "@/store/OrdersStore";
+import useOrdersStore from "@/store/useOrdersStore";
 
 function Orders() {
     const {openDrawer, closeDrawer} = useOrdersStore();

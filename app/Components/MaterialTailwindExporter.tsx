@@ -12,6 +12,7 @@ import {
     Checkbox,
     Typography,
     Option,
+    Navbar,
     ListItem,
     List,
     Menu,
@@ -25,7 +26,8 @@ import {
     CardHeader,
     CardBody,
     CardFooter,
-    Rating
+    Rating,
+    MenuList
 } from "@material-tailwind/react";
 
 export {
@@ -40,6 +42,7 @@ export {
     ListItem,
     List,
     Menu,
+    Navbar,
     Accordion,
     AccordionBody,
     AccordionHeader,
@@ -54,4 +57,5 @@ export {
     Input,
     Checkbox,
     Rating,
+    MenuList
 };

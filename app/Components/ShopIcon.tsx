@@ -1,11 +1,11 @@
 'use client'
 import React from 'react';
-import {IconButton} from "@material-tailwind/react";
 import {FaShoppingCart} from "react-icons/fa";
-import useOrdersStore from "@/store/OrdersStore";
+import useOrdersStore from "../../store/useOrdersStore";
+import {IconButton} from "./MaterialTailwindExporter";
 
 const ShopIcon = () => {
-    const setOpenDrawer = useOrdersStore(s => s.setOpenDrawer);
+    const setOpenDrawer = useOrdersStore((s: { setOpenDrawer: any; }) => s.setOpenDrawer);
     return (
         <IconButton color={'white'} onClick={() => setOpenDrawer(true)}>
             <FaShoppingCart size={18}/>

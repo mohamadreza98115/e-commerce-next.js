@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, List, ListItem, Typography} from "@/app/Components/MaterialTailwindExporter";
 import Link from "next/link";
 
-type Product = {
+export type Product = {
     id: number;
     title: string;
     description: string;

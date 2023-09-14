@@ -1,8 +1,9 @@
 import React from "react";
-import {Avatar, Menu, MenuHandler, MenuItem, MenuList, Typography} from "@material-tailwind/react";
 import {InboxArrowDownIcon, LifebuoyIcon} from "@heroicons/react/24/outline";
-import {Cog6ToothIcon, PowerIcon, UserCircleIcon} from "@heroicons/react/24/solid";
+import {PowerIcon, UserCircleIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
+import {Avatar, Menu, MenuItem, MenuList, Typography} from "@/app/Components/MaterialTailwindExporter";
+import {MenuHandler} from "@material-tailwind/react";
 
 // profile menu component
 const profileMenuItems = [

@@ -1,10 +1,10 @@
 'use client'
 
 import React from "react";
-import {IconButton, Navbar, Typography,} from "./MaterialTailwind/index";
-import ProfileMenu from "@/Components/ProfileMenu";
 import {Collapse} from "@material-tailwind/react";
-import ShopIcon from "@/Components/ShopIcon";
+import {IconButton, Navbar, Typography} from "@/app/Components/MaterialTailwindExporter";
+import ShopIcon from "@/app/Components/ShopIcon";
+import ProfileMenu from "@/app/Components/ProfileMenu";
 
 
 function StickyNavbar() {

@@ -1,9 +1,13 @@
 import {Card, CardBody, CardFooter, CardHeader, Typography} from "@/app/Components/MaterialTailwindExporter";
 import AddToCart from "@/app/Components/AddToCart";
 import Image from "next/image";
+import {Product} from "@/app/products/page";
 
+type Props = {
+    product: Product
+}
 
-const ProductCard = () => {
+const ProductCard = ({product}: Props) => {
     return (
         <Card className="w-full max-w-[26rem] shadow-lg">
             <CardHeader floated={false} color="blue-gray">

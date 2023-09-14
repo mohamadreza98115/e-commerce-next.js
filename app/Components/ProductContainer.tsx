@@ -1,11 +1,16 @@
 'use client'
 import React from 'react';
-import SearchBar from "@/Components/SearchBar";
-import ProductItem from "@/Components/ProductItem";
-import Sidebar from "@/Components/Sidebar";
-import Categories from "@/Components/Categories";
+import Sidebar from "@/app/Components/Sidebar";
+import SearchBar from "@/app/Components/SearchBar";
+import Categories from "@/app/Components/Categories";
+import ProductCard from "@/app/Components/ProductCard";
+import {Product} from "@/app/products/page";
 
-const ProductContainer = ({products: Products}) => {
+type Props = {
+    products: Product[]
+}
+
+const ProductContainer = ({products: Products}: Props) => {
     return (
         <div className={'mx-auto grid md:grid-cols-3'}>
             <div className={'hidden md:grid col-span-1'}>
@@ -17,7 +22,7 @@ const ProductContainer = ({products: Products}) => {
                     <Categories/>
                 </div>
                 <div className={'flex justify-center align-middle flex-row flex-wrap md:justify-start'}>
-                    {Products?.map(product => <ProductItem key={product._id} product={product}/>)}
+                    {Products?.map(product => <ProductCard key={product.id} product={product}/>)}
                 </div>
             </div>
         </div>
