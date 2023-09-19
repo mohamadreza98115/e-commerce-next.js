@@ -3,15 +3,15 @@ import mongoose, {Schema} from "mongoose";
 const ProductSchema = new Schema({
     title: {
         type: String,
-        required: [true, 'please enter product title']
+        required: true
     },
     price: {
         type: Number,
-        required: [true, 'please enter product price']
+        required: true
     },
     category: {
         type: String,
-        required: [true, 'please enter product category'],
+        required: true,
         enum: {
             values: [
                 "smartphones",
@@ -40,15 +40,15 @@ const ProductSchema = new Schema({
     },
     description: {
         type: String,
-        required: [true, 'please enter product description']
+        required: true
     },
     thumbnail: {
         type: String,
-        required: [true, 'please enter product thumbnail']
+        required: true
     },
     brand: {
         type: String,
-        required: [true, 'please enter product brand']
+        required: true
     },
     discountPercentage: {
         type: Number,
@@ -57,7 +57,7 @@ const ProductSchema = new Schema({
     images: {type: [String]},
     stock: {
         type: Number,
-        required: [true, "please enter product stock"]
+        required: true
     },
     rating: {
         type: Number,

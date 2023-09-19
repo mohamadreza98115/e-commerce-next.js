@@ -5,6 +5,7 @@ import {Collapse} from "@material-tailwind/react";
 import {IconButton, Navbar, Typography} from "@/app/Components/MaterialTailwindExporter";
 import ShopIcon from "@/app/Components/ShopIcon";
 import ProfileMenu from "@/app/Components/ProfileMenu";
+import Link from "next/link";
 
 
 function StickyNavbar() {
@@ -28,9 +29,9 @@ function StickyNavbar() {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <a href="#" className="flex items-center">
-                    Pages
-                </a>
+                <Link href="/products" className="flex items-center">
+                    Products
+                </Link>
             </Typography>
             <Typography
                 as="li"
@@ -58,13 +59,13 @@ function StickyNavbar() {
     return (
         <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
             <div className="flex items-center justify-between text-blue-gray-900">
-                <Typography
-                    as="a"
-                    href="#"
-                    className="mr-4 cursor-pointer py-1.5 font-medium"
-                >
-                    Online Shopping
-                </Typography>
+                <Link href={'/'}>
+                    <Typography
+                        className="mr-4 cursor-pointer py-1.5 font-medium"
+                    >
+                        Online Shopping
+                    </Typography>
+                </Link>
                 <div className="flex items-center gap-4">
                     <div className="mr-4 hidden lg:block">{navList}</div>
                     <ShopIcon/>

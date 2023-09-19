@@ -15,10 +15,9 @@ type Product = {
 }
 
 const FetchProducts = async () => {
-    const {data} = await axios.get(`${process.env.LOCAL_API_URL}/api/products`);
-    const products: Product[] = await data.products;
+    const {data} = await axios.get(`${process.env.API_URL}/products`);
+    const products: Product[] = data.products;
     return products;
-
 }
 
 export default FetchProducts;

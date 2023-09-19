@@ -1,9 +1,10 @@
 import React from 'react';
-import {Card, List, ListItem, Typography} from "@/app/Components/MaterialTailwindExporter";
+import {Card, Typography} from "@/app/Components/MaterialTailwindExporter";
 import Link from "next/link";
+import {sort} from 'fast-sort'
 
 export type Product = {
-    id: number;
+    _id: number;
     title: string;
     description: string;
     price: number;
@@ -23,10 +24,11 @@ type Props = {
 const TABLE_ROW = ['Title', 'Category', 'Brand', 'Rating', 'Price']
 
 const ProductsPage = async ({searchParams: {sortOrder}}: Props) => {
+    console.log(sortOrder) // title, category
     const res = await fetch(`${process.env.API_URL}/products`)
     const data = await res.json();
     const Products: Product[] = data.products;
-    console.log(sortOrder)
+    const sortedProducts = sort(Products).asc(p => p[sortOrder as keyof typeof p]);
     return (
         <Card className="p-4 h-full w-full overflow-scroll">
             <Typography variant={'h4'}>Products List</Typography>
@@ -39,15 +41,15 @@ const ProductsPage = async ({searchParams: {sortOrder}}: Props) => {
                             variant="small"
                             color="blue-gray"
                             className="font-normal leading-none opacity-70"
-                        >{row}</Typography>
+                        ><Link href={`/products?sortOrder=${row.toLowerCase()}`}>{row}</Link></Typography>
                     </th>)}
                 </tr>
                 </thead>
                 <tbody>
-                {Products?.map((product, i) => {
+                {sortedProducts?.map((product, i) => {
                     const isLast = i === Products.length - 1;
                     const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
-                    return <tr key={product.id}>
+                    return <tr key={product._id}>
                         <td className={classes}>
                             <Typography
                                 variant="small"

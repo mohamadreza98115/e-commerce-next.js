@@ -3,6 +3,7 @@ import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
 import React from "react";
 import ThemeContext from "@/app/context/ThemeContext";
+import Appbar from "@/app/Components/Appbar";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -16,6 +17,7 @@ export default function RootLayout({children,}: { children: React.ReactNode }) {
         <html lang="en">
         <body className={inter.className}>
         <ThemeContext>
+            <Appbar />
             {children}
         </ThemeContext>
         </body>

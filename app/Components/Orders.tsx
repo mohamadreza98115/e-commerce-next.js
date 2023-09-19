@@ -1,10 +1,12 @@
 'use client'
 import React from "react";
-import {Button, Drawer, IconButton, Typography,} from "@material-tailwind/react";
 import useOrdersStore from "@/store/useOrdersStore";
+import {Button, Drawer, IconButton, Typography} from "@/app/Components/MaterialTailwindExporter";
+import {useRouter} from "next/navigation";
 
 function Orders() {
     const {openDrawer, closeDrawer} = useOrdersStore();
+    const router = useRouter();
 
     return (
         <Drawer
@@ -13,7 +15,7 @@ function Orders() {
             onClose={closeDrawer}
             className="p-4"
         >
-            <div className="mb-6 flex items-center justify-between">
+            <div className="mb-6 flex items-center justify-between flex-grow">
                 <Typography variant="h5" color="blue-gray">
                     Orders
                 </Typography>
@@ -39,7 +41,7 @@ function Orders() {
                 </IconButton>
 
             </div>
-            <Button fullWidth >Pay</Button>
+            <Button onClick={() => router.push('/payment')} fullWidth>Proceed to Checkout</Button>
         </Drawer>
     );
 }

@@ -39,7 +39,6 @@ const Sidebar = () => {
     const handleOpen = (value: React.SetStateAction<number>) => {
         setOpen(open === value ? 0 : value);
     };
-
     return (
         <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] px-4 shadow-xl shadow-blue-gray-900/5">
             <div className="mb-2 p-4 pb-0">

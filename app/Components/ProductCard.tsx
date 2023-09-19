@@ -2,6 +2,7 @@ import {Card, CardBody, CardFooter, CardHeader, Typography} from "@/app/Componen
 import AddToCart from "@/app/Components/AddToCart";
 import Image from "next/image";
 import {Product} from "@/app/products/page";
+import Link from "next/link";
 
 type Props = {
     product: Product
@@ -14,17 +15,19 @@ const ProductCard = ({product}: Props) => {
                 <Image
                     width={320}
                     height={240}
-                    src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                    alt="ui/ux review check"
+                    src={product.thumbnail}
+                    alt="Product image"
                 />
                 <div
                     className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 "/>
             </CardHeader>
             <CardBody>
                 <div className="mb-3 flex items-center justify-between">
-                    <Typography variant="h5" color="blue-gray" className="font-medium">
-                        Wooden House, Florida
-                    </Typography>
+                    <Link href={`/api/products/${product._id}`}>
+                        <Typography variant="h5" color="blue-gray" className="font-medium">
+                            {product.title}
+                        </Typography>
+                    </Link>
                     <Typography
                         color="blue-gray"
                         className="flex items-center gap-1.5 font-normal"
@@ -41,12 +44,11 @@ const ProductCard = ({product}: Props) => {
                                 clipRule="evenodd"
                             />
                         </svg>
-                        5.0
+                        {product.rating}
                     </Typography>
                 </div>
                 <Typography color="gray">
-                    Enter a freshly updated and thoughtfully furnished peaceful home
-                    surrounded by ancient trees, stone walls, and open meadows.
+                    {product.description}
                 </Typography>
             </CardBody>
             <CardFooter className="pt-3">

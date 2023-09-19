@@ -22,7 +22,7 @@ const ProductContainer = ({products: Products}: Props) => {
                     <Categories/>
                 </div>
                 <div className={'flex justify-center align-middle flex-row flex-wrap md:justify-start'}>
-                    {Products?.map(product => <ProductCard key={product.id} product={product}/>)}
+                    {Products?.map(product => <ProductCard key={product._id} product={product}/>)}
                 </div>
             </div>
         </div>

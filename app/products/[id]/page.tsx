@@ -4,7 +4,7 @@ type Props = {
     params: { id: number }
 }
 
-const Page = async ({params: {id}}: Props) => {
+const ProductDetailPage = async ({params: {id}}: Props) => {
     const res = await fetch(`${process.env.API_URL}/products/${id}`);
     const product = await res.json();
     return (
@@ -16,4 +16,4 @@ const Page = async ({params: {id}}: Props) => {
     );
 };
 
-export default Page;
+export default ProductDetailPage;
