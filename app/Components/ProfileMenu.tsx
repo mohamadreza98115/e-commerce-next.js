@@ -2,11 +2,11 @@ import React from "react";
 import {InboxArrowDownIcon, LifebuoyIcon} from "@heroicons/react/24/outline";
 import {PowerIcon, UserCircleIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
-import {Avatar, Menu, MenuItem, MenuList, Typography} from "@/app/Components/MaterialTailwindExporter";
+import {Avatar, Button, Menu, MenuItem, MenuList, Typography} from "@/app/Components/MaterialTailwindExporter";
 import {MenuHandler} from "@material-tailwind/react";
 
 interface Props {
-    data: object;
+    email: string;
 }
 
 // profile menu component
@@ -33,8 +33,7 @@ const profileMenuItems = [
     },
 ];
 
-const ProfileMenu = ({data}: Props) => {
-    const {email, image} = data;
+const ProfileMenu = ({email}: Props) => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     const closeMenu = () => setIsMenuOpen(false);
@@ -46,8 +45,8 @@ const ProfileMenu = ({data}: Props) => {
                     variant="circular"
                     size="sm"
                     alt="tania andrew"
-                    className="cursor-pointer"
-                    src={image}
+                    className="border border-gray-900 p-0.5 cursor-pointer"
+                    src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
                 />
             </MenuHandler>
             <MenuList className="p-1">

@@ -61,7 +61,7 @@ function StickyNavbar() {
                 <div className="flex items-center gap-4">
                     <div className="mr-4 hidden lg:block">{navList}</div>
                     <ShopIcon/>
-                    {status === 'authenticated' && <ProfileMenu data={session?.user}/>}
+                    {status === 'authenticated' && <ProfileMenu email={session?.user?.email}/>}
                     {status === 'unauthenticated' && <div className={'flex flex-row'}>
                         <Typography
                             variant="small"

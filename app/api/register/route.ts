@@ -1,40 +1,43 @@
-import {NextRequest, NextResponse} from "next/server";
-import {z} from 'zod';
+import bcrypt from 'bcrypt'
+import {NextRequest, NextResponse} from 'next/server'
 import prisma from "@/prisma/client";
-import bcrypt from "bcrypt";
+import {z} from "zod";
 
-//  Create schema for validating user data.
+// Create schema with zod and validate data
 const schema = z.object({
     email: z.string().email(),
     password: z.string().min(6)
 })
 
-export const POST = async (request: NextRequest) => {
-
-    // Get the passed data from body of request in async
+export async function POST(request: NextRequest) {
     const body = await request.json();
+    const {email, password} = body;
 
-    // Validation Data
     const validation = schema.safeParse(body);
-    if (!validation.success) return NextResponse.json(validation.error.errors, {status: 400})
 
-    // Get a specific user from database
-    const user = await prisma.user.findUnique({where: {email: body.email}})
+    if (!validation.success) {
+        return NextResponse.json(validation.error.errors, {status: 400});
+    }
 
-    // Check user is existing in database or not.
-    if (user) return NextResponse.json({error: 'User already exists'}, {status: 400})
+    const exist = await prisma.user.findUnique({
+        where: {
+            email
+        }
+    });
 
-    //  Encrypt password with Bcrypt library
-    const hashedPassword = await bcrypt.hash(body.password, 10);
+    if (exist) {
+        return NextResponse.json({error: 'Email already exists'}, {status: 400})
+    }
 
-    //  If the user is not exist create a new user and store in database
-    const newUser = await prisma.user.create({
+    // hash the password with bcrypt library
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await prisma.user.create({
         data: {
-            email: body.email,
+            email,
             hashedPassword
         }
     });
 
-    return NextResponse.json({email: newUser.email})
-
+    return NextResponse.json(user)
 }
