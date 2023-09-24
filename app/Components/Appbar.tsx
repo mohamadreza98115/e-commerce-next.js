@@ -6,11 +6,13 @@ import {IconButton, Navbar, Typography} from "@/app/Components/MaterialTailwindE
 import ShopIcon from "@/app/Components/ShopIcon";
 import ProfileMenu from "@/app/Components/ProfileMenu";
 import Link from "next/link";
+import {useSession} from "next-auth/react";
 
 
 function StickyNavbar() {
     const [openNav, setOpenNav] = React.useState(false);
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const {status, data: session} = useSession();
 
     const closeMenu = () => setIsMenuOpen(false);
 
@@ -43,16 +45,6 @@ function StickyNavbar() {
                     Account
                 </a>
             </Typography>
-            <Typography
-                as="li"
-                variant="small"
-                color="blue-gray"
-                className="p-1 font-normal"
-            >
-                <a href="#" className="flex items-center">
-                    Docs
-                </a>
-            </Typography>
         </ul>
     );
 
@@ -69,7 +61,27 @@ function StickyNavbar() {
                 <div className="flex items-center gap-4">
                     <div className="mr-4 hidden lg:block">{navList}</div>
                     <ShopIcon/>
-                    <ProfileMenu/>
+                    {status === 'authenticated' && <ProfileMenu data={session?.user}/>}
+                    {status === 'unauthenticated' && <div className={'flex flex-row'}>
+                        <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="p-1 font-normal"
+                        >
+                            <Link href="/register" className="flex items-center">
+                                Sign Up
+                            </Link>
+                        </Typography>
+                        <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="p-1 font-normal"
+                        >
+                            <Link href="/api/auth/signin" className="flex items-center">
+                                Login
+                            </Link>
+                        </Typography>
+                    </div>}
                     <IconButton
                         variant="text"
                         className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"

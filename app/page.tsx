@@ -1,5 +1,5 @@
 import ProductContainer from "@/app/Components/ProductContainer";
-import FetchProducts from "@/backend/services/FetchProducts";
+import FetchProducts from "@/services/FetchProducts";
 import Orders from "@/app/Components/Orders";
 import {Suspense} from "react";
 

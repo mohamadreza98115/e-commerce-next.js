@@ -1,6 +1,6 @@
 import axios from "axios";
 
-type Product = {
+export interface Product {
     id: number;
     title: string;
     description: string;
@@ -15,8 +15,8 @@ type Product = {
 }
 
 const FetchProducts = async () => {
-    const {data} = await axios.get(`${process.env.API_URL}/products`);
-    const products: Product[] = data.products;
+    const {data} = await axios.get(`${process.env.LOCAL_API_URL}/products`);
+    const products: Product[] = data;
     return products;
 }
 

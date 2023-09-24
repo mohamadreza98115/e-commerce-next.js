@@ -51,7 +51,7 @@ export default function CheckoutForm() {
     const [cardExpires, setCardExpires] = React.useState("");
 
     return (
-        <Card className="w-full max-w-[24rem]">
+        <Card className="w-full max-w-[28rem]">
             <CardHeader
                 color="gray"
                 floated={false}
@@ -62,7 +62,7 @@ export default function CheckoutForm() {
                     <BanknotesIcon className="h-10 w-10"/>
                 </div>
                 <Typography variant="h4" color="white">
-                    Material Tailwind PRO
+                    Payment Methods
                 </Typography>
             </CardHeader>
             <CardBody>
@@ -166,7 +166,7 @@ export default function CheckoutForm() {
                                     </Typography>
 
                                     <Select label="Country" menuProps={{className: "h-48"}}>
-                                        <Option value={'af'}>
+                                        <Option>
                                             Afghanistan
                                         </Option>
                                     </Select>

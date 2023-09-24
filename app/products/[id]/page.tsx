@@ -1,17 +1,16 @@
 import React from 'react';
+import FetchProduct from "@/services/FetchProduct";
 
 type Props = {
-    params: { id: number }
+    params: { id: string }
 }
 
 const ProductDetailPage = async ({params: {id}}: Props) => {
-    const res = await fetch(`${process.env.API_URL}/products/${id}`);
-    const product = await res.json();
+    const product = await FetchProduct(id);
+    console.log(product)
     return (
         <div>
-            <h1>{product.title}</h1>
-            <h5>{product.category}</h5>
-            <p>{product.description}</p>
+            product {JSON.stringify(product)}
         </div>
     );
 };

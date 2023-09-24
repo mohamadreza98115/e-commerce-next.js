@@ -5,6 +5,10 @@ import Link from "next/link";
 import {Avatar, Menu, MenuItem, MenuList, Typography} from "@/app/Components/MaterialTailwindExporter";
 import {MenuHandler} from "@material-tailwind/react";
 
+interface Props {
+    data: object;
+}
+
 // profile menu component
 const profileMenuItems = [
     {
@@ -25,11 +29,12 @@ const profileMenuItems = [
     {
         label: "Sign Out",
         icon: PowerIcon,
-        url: '/login'
+        url: '/api/auth/signout'
     },
 ];
 
-const ProfileMenu = () => {
+const ProfileMenu = ({data}: Props) => {
+    const {email, image} = data;
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     const closeMenu = () => setIsMenuOpen(false);
@@ -42,16 +47,17 @@ const ProfileMenu = () => {
                     size="sm"
                     alt="tania andrew"
                     className="cursor-pointer"
-                    src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                    src={image}
                 />
             </MenuHandler>
             <MenuList className="p-1">
+                <Typography className={'p-2 hover:border-0'}>{email}</Typography>
+                <hr className={'my-2 border-blue-gray-50'}/>
                 {profileMenuItems.map(({label, icon, url}, key) => {
                     const isLastItem = key === profileMenuItems.length - 1;
                     return (
                         <MenuItem
                             key={label}
-                            onKeyUp={closeMenu}
                             className={`flex items-center gap-2 rounded ${
                                 isLastItem
                                     ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"

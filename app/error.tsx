@@ -15,8 +15,9 @@ export default function Error({error, reset}: Props) {
     }, [error])
 
     return (
-        <div className={'container flex flex-col md:flex-row items-center justify-center px-5 text-gray-700'}>
-            <h2>Something went wrong!</h2>
+        <div
+            className={'h-screen flex flex-col items-center justify-center px-5 text-gray-700'}>
+            <h2 className={'mb-3'}>Something went wrong!</h2>
             <Button
                 onClick={
                     // Attempt to recover by trying to re-render the segment

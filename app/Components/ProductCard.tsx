@@ -1,8 +1,8 @@
 import {Card, CardBody, CardFooter, CardHeader, Typography} from "@/app/Components/MaterialTailwindExporter";
 import AddToCart from "@/app/Components/AddToCart";
 import Image from "next/image";
-import {Product} from "@/app/products/page";
 import Link from "next/link";
+import {Product} from "@/services/FetchProducts";
 
 type Props = {
     product: Product
@@ -23,7 +23,7 @@ const ProductCard = ({product}: Props) => {
             </CardHeader>
             <CardBody>
                 <div className="mb-3 flex items-center justify-between">
-                    <Link href={`/api/products/${product._id}`}>
+                    <Link href={`/products/${product.id}`}>
                         <Typography variant="h5" color="blue-gray" className="font-medium">
                             {product.title}
                         </Typography>
@@ -52,7 +52,7 @@ const ProductCard = ({product}: Props) => {
                 </Typography>
             </CardBody>
             <CardFooter className="pt-3">
-                <AddToCart/>
+                <AddToCart product={product}/>
             </CardFooter>
         </Card>
     );

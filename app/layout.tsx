@@ -4,6 +4,7 @@ import {Inter} from 'next/font/google'
 import React from "react";
 import ThemeContext from "@/app/context/ThemeContext";
 import Appbar from "@/app/Components/Appbar";
+import AuthProvider from "@/app/context/AuthProvider";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -15,12 +16,14 @@ export const metadata: Metadata = {
 export default function RootLayout({children,}: { children: React.ReactNode }) {
     return (
         <html lang="en">
-        <body className={inter.className}>
-        <ThemeContext>
-            <Appbar />
-            {children}
-        </ThemeContext>
-        </body>
+        <AuthProvider>
+            <body className={inter.className}>
+            <ThemeContext>
+                <Appbar/>
+                {children}
+            </ThemeContext>
+            </body>
+        </AuthProvider>
         </html>
     )
 }

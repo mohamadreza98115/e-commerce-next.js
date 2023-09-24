@@ -4,7 +4,8 @@ import Sidebar from "@/app/Components/Sidebar";
 import SearchBar from "@/app/Components/SearchBar";
 import Categories from "@/app/Components/Categories";
 import ProductCard from "@/app/Components/ProductCard";
-import {Product} from "@/app/products/page";
+import {Product} from "@/services/FetchProducts";
+
 
 type Props = {
     products: Product[]
@@ -22,7 +23,7 @@ const ProductContainer = ({products: Products}: Props) => {
                     <Categories/>
                 </div>
                 <div className={'flex justify-center align-middle flex-row flex-wrap md:justify-start'}>
-                    {Products?.map(product => <ProductCard key={product._id} product={product}/>)}
+                    {Products?.map(product => <ProductCard key={product.id} product={product}/>)}
                 </div>
             </div>
         </div>

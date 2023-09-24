@@ -1,5 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
 import prisma from "@/prisma/client";
+import schema from "@/app/api/products/schema";
 
 
 export const GET = async (request: NextRequest) => {
@@ -7,17 +8,43 @@ export const GET = async (request: NextRequest) => {
     return NextResponse.json(products);
 };
 
-export const POST = async (request: NextRequest) => {
+export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
-        const newData = await prisma.product.create({
-            data: {
-                ...body
-            }
-        })
 
-        return NextResponse.json(newData);
-    } catch (err) {
-        return NextResponse.json({message: "Failed to post product", err}, {status: 500})
+        const validation = schema.safeParse(body);
+
+        if (!validation.success) {
+            return NextResponse.json(validation.error.errors, {status: 400})
+        }
+
+        const productTitle = await prisma.product.findUnique({
+            where: {
+                title: body.title
+            }
+        });
+        if (productTitle) return NextResponse.json({error: 'Product already exists'}, {status: 400})
+        const product = await prisma.product.create({
+            data: {
+                title: body.title,
+                description: body.description,
+                price: body.price,
+                discountPercentage: body.discountPercentage,
+                rating: body.rating,
+                stock: body.stock,
+                brand: body.brand,
+                category: body.category,
+                thumbnail: body.thumbnail,
+                images: body.images
+            },
+        });
+
+        return new NextResponse(JSON.stringify(product), {
+            status: 201,
+            headers: {"Content-Type": "application/json"},
+        });
+    } catch
+        (error: any) {
+        return new NextResponse(error.message, {status: 500});
     }
 }
